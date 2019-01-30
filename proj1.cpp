@@ -28,10 +28,10 @@ int main(int argc, char* argv[])
                         listA.push_back(token);
                 }
                 input.close();
-                for (long i = 0; i < listA.size(); i++)
+                /*for (long i = 0; i < listA.size(); i++)
                 {
                         cout << listA[i] << endl;
-                }
+                }*/
         }
         else cout << "couldn't open file" << endl;
 
@@ -72,9 +72,10 @@ int main(int argc, char* argv[])
 pair<long, vector<long> > sortAndCount(vector<long> listA)
 {
         cout << ++freezeCounter << endl;
+        //cout << "sorting with size: " << listA.size() << endl;
         if (listA.size() == 1) return make_pair(0, listA);
 
-        vector<long> AsubB;
+        //cout << "making vector..." << endl;
 
         long sizeA = listA.size();
 
@@ -95,11 +96,15 @@ pair<long, vector<long> > sortAndCount(vector<long> listA)
 pair<long, vector<long> > mergeAndCount(vector<long> a, vector<long> b)
 {
         cout << ++freezeCounter << endl;
+        //cout << "merging..." << endl;
+
         pair<long, vector<long> > pairA;
         pair<long, vector<long> > pairB;
 
         pairA = sortAndCount(a);
         pairB = sortAndCount(b);
+
+        //cout << "done sorting..." << endl;
 
         long numInversionsA = pairA.first;
         long numInversionsB = pairB.first;
@@ -112,6 +117,9 @@ pair<long, vector<long> > mergeAndCount(vector<long> a, vector<long> b)
                 //while both lists have elements left...
         while(1)
         {
+                //cout << "inside while loop..." << endl;
+                //cout << "size of A = " << pairA.second.size() << endl;
+                //cout << "size of B = " << pairB.second.size() << endl;
                         //if A is empty
                 if (pairA.second.empty())
                 {
@@ -133,7 +141,7 @@ pair<long, vector<long> > mergeAndCount(vector<long> a, vector<long> b)
                         continue;
                 }
 
-                //if both lists still have elements...
+                //cout << "both lists aren't empty..." << endl;
 
                 if (pairA.second.front() < pairB.second.front())
                 {
@@ -145,6 +153,11 @@ pair<long, vector<long> > mergeAndCount(vector<long> a, vector<long> b)
                         numInversionsC += pairA.second.size();
                         c.push_back(pairB.second.front());
                         pairB.second.erase(pairB.second.begin());
+                }
+                else
+                {
+                        c.push_back(pairA.second.front());
+                        pairA.second.erase(pairA.second.begin());
                 }
         }
 
