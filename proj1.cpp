@@ -7,6 +7,8 @@
 //There are a number of lines commented out.  These lines are just cout statements used for testing.
 //these printouts are what I used to find infinite loops or crashes as we recurse through the input.
 
+//output was correct at least up to Sample6
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -20,7 +22,7 @@ pair<long long, vector<long long> > mergeAndCount(vector<long long> a, vector<lo
 
 
         //was used for testing, to check for infinite loops
-long long freezeCounter = 0;
+//long long freezeCounter = 0;
 
 int main(int argc, char* argv[])
 {
@@ -85,7 +87,7 @@ int main(int argc, char* argv[])
         //return type is in the format (number_of_inversions, sorted_list)
 pair<long long, vector<long long> > sortAndCount(vector<long long> listA)
 {
-        cout << ++freezeCounter << endl;
+        //cout << ++freezeCounter << endl;
         //cout << "sorting with size: " << listA.size() << endl;
         if (listA.size() == 1) return make_pair(0, listA);
 
@@ -113,7 +115,7 @@ pair<long long, vector<long long> > sortAndCount(vector<long long> listA)
         //return type is in the format (number_of_inversions, sorted_and_merged_list)
 pair<long long, vector<long long> > mergeAndCount(vector<long long> a, vector<long long> b)
 {
-        cout << ++freezeCounter << endl;
+        //cout << ++freezeCounter << endl;
         //cout << "merging..." << endl;
 
         pair<long long, vector<long long> > pairA;
