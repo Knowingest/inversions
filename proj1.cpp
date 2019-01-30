@@ -15,18 +15,18 @@
 
 using namespace std;
 
-pair<long, vector<long> > sortAndCount(vector<long>);
-pair<long, vector<long> > mergeAndCount(vector<long> a, vector<long> b);
+pair<long long, vector<long long> > sortAndCount(vector<long long>);
+pair<long long, vector<long long> > mergeAndCount(vector<long long> a, vector<long long> b);
 
 
         //was used for testing, to check for infinite loops
-//long freezeCounter = 0;
+long long freezeCounter = 0;
 
 int main(int argc, char* argv[])
 {
         ifstream input(argv[1]);
-        long token;
-        vector<long> listA;
+        long long token;
+        vector<long long> listA;
 
         if (input.is_open())
         {
@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
                         listA.push_back(token);
                 }
                 input.close();
-                /*for (long i = 0; i < listA.size(); i++)
+                /*for (long long i = 0; i < listA.size(); i++)
                 {
                         cout << listA[i] << endl;
                 }*/
@@ -49,16 +49,16 @@ int main(int argc, char* argv[])
 
         //cout << "size of a " << listA.size() << endl;
 
-        long sizeA = listA.size();
+        long long sizeA = listA.size();
 
-        vector<long> listB;
+        vector<long long> listB;
 
                 //cut listA in half, call new half listB
-        for (long i = sizeA / 2; i < sizeA; i++)
+        for (long long i = sizeA / 2; i < sizeA; i++)
         {
                 listB.push_back(listA[i]);
         }
-        for (long i = sizeA / 2; i < sizeA; i++)
+        for (long long i = sizeA / 2; i < sizeA; i++)
         {
                 listA.pop_back();
         }
@@ -66,10 +66,10 @@ int main(int argc, char* argv[])
         cout << "Size of input: " << listA.size() + listB.size() << endl;
 
                 //merge them and count the inversions, recursively.
-        pair<long, vector<long> > results = mergeAndCount(listA, listB);
+        pair<long long, vector<long long> > results = mergeAndCount(listA, listB);
 
         /*
-        for (long i = 0; i < results.second.size(); i++)
+        for (long long i = 0; i < results.second.size(); i++)
                 {
                         cout << results.second[i] << endl;
                 }
@@ -83,23 +83,23 @@ int main(int argc, char* argv[])
         //splits one list into two, then merges them.
 
         //return type is in the format (number_of_inversions, sorted_list)
-pair<long, vector<long> > sortAndCount(vector<long> listA)
+pair<long long, vector<long long> > sortAndCount(vector<long long> listA)
 {
-        //cout << ++freezeCounter << endl;
+        cout << ++freezeCounter << endl;
         //cout << "sorting with size: " << listA.size() << endl;
         if (listA.size() == 1) return make_pair(0, listA);
 
         //cout << "making vector..." << endl;
 
-        long sizeA = listA.size();
+        long long sizeA = listA.size();
 
-        vector<long> listB;
-        for (long i = sizeA / 2; i < sizeA; i++)
+        vector<long long> listB;
+        for (long long i = sizeA / 2; i < sizeA; i++)
         {
                 listB.push_back(listA[i]);
                 //cout << "pushing " << listA[i] << endl;
         }
-        for (long i = sizeA / 2; i < sizeA; i++)
+        for (long long i = sizeA / 2; i < sizeA; i++)
         {
                 //cout << "popping a..." << endl;
                 listA.pop_back();
@@ -111,24 +111,24 @@ pair<long, vector<long> > sortAndCount(vector<long> listA)
         //takes two lists, sorts them recursively, and merges them together.
 
         //return type is in the format (number_of_inversions, sorted_and_merged_list)
-pair<long, vector<long> > mergeAndCount(vector<long> a, vector<long> b)
+pair<long long, vector<long long> > mergeAndCount(vector<long long> a, vector<long long> b)
 {
-        //cout << ++freezeCounter << endl;
+        cout << ++freezeCounter << endl;
         //cout << "merging..." << endl;
 
-        pair<long, vector<long> > pairA;
-        pair<long, vector<long> > pairB;
+        pair<long long, vector<long long> > pairA;
+        pair<long long, vector<long long> > pairB;
 
         pairA = sortAndCount(a);
         pairB = sortAndCount(b);
 
         //cout << "done sorting..." << endl;
 
-        long numInversionsA = pairA.first;
-        long numInversionsB = pairB.first;
-        long numInversionsC = 0;
+        long long numInversionsA = pairA.first;
+        long long numInversionsB = pairB.first;
+        long long numInversionsC = 0;
         
-        vector<long> c;
+        vector<long long> c;
 
                 //now to combine the lists
 
@@ -185,7 +185,7 @@ pair<long, vector<long> > mergeAndCount(vector<long> a, vector<long> b)
         }
 
                 //we now count up the total inversions
-        long inversionTotal = numInversionsA + numInversionsB + numInversionsC;
+        long long inversionTotal = numInversionsA + numInversionsB + numInversionsC;
                 //and return a pair of the inversion count and the new list
         return make_pair(inversionTotal, c);
 }
