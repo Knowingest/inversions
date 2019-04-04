@@ -8,3 +8,5 @@ Every time we push_back() we're resizing the entire array, and these arrays are 
 
 If I redid it I would do it all in-place in a single array, and use iterators to tell functions which sub-arrays to work with.
 That should get rid of most of the slowness.  But on a theoretical level, the complexity of the algorithm used is O(nlog(n))
+
+View prompt.jpg for more info on what this program actually does
